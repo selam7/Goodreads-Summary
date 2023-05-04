@@ -1,0 +1,68 @@
+echo "# Goodreads-Summary" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/selam7/Goodreads-Summary.git
+git push -u origin main
+
+import csv
+
+
+#with open('goodreads.csv', 'r') as csv_file:
+#    csv_reader = csv.DictReader(csv_file)
+#    print("Basic Stats")
+#    for row in csv_reader:
+#       print(row)
+
+#################Number of books read###################
+from Tools.scripts.dutree import display
+
+rating = []
+
+with open('goodreads.csv', 'r') as csv_file:
+    data = csv.DictReader(csv_file)
+    for row in data:
+        rating.append(int(float(row['My Rating'])))
+
+print('In 2020 I read {} books'.format(len(rating)))
+print('The lowest book rating I gave was {}'.format(min(rating)))
+print('The highest book rating I gave was {}'.format(max(rating)))
+
+a = sum(rating)
+b = len(rating)
+average = a / b
+
+print('My average rating for 2020 is', average)
+
+########################### Comparing Audio and e-books###############################
+import csv
+import collections
+
+csv_file = open('goodreads.csv', 'r', encoding='utf-8')
+csv_input = csv.DictReader(csv_file)
+x = collections.defaultdict(int)
+
+for input in csv_input:
+    x[input['Media type']] += 1 if input['Media type'] in ['ebook','audiobook'] else 0
+
+for key, value in x.items():
+     print("Books read on an",key,':', value)
+
+#####################Comparing gender###################
+import csv
+import collections
+
+csv_file = open('goodreads.csv', 'r', encoding='utf-8')
+csv_input = csv.DictReader(csv_file)
+x = collections.defaultdict(int)
+
+for input in csv_input:
+    x[input['Gender']] += 1 if input['Gender'] in ['Male', 'Female', 'Non-Binary'] else 0
+
+for key, value in x.items():
+     print("Books by",key,':', value)
+
+
+####################pie chart############################
+#output graph
