@@ -25,7 +25,7 @@ with open('goodreads.csv', 'r') as csv_file:
     for row in data:
         rating.append(int(float(row['My Rating'])))
 
-print('In 2020 I read {} books'.format(len(rating)))
+print('In 202x I read {} books'.format(len(rating)))
 print('The lowest book rating I gave was {}'.format(min(rating)))
 print('The highest book rating I gave was {}'.format(max(rating)))
 
@@ -33,7 +33,7 @@ a = sum(rating)
 b = len(rating)
 average = a / b
 
-print('My average rating for 2020 is', average)
+print('My average rating for 202x is', average)
 
 ########################### Comparing Audio and e-books###############################
 import csv
